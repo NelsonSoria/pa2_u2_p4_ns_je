@@ -18,4 +18,22 @@ public class EstudianteServiceImpl implements EstudianteService{
 		
 	}
 
+	@Override
+	public void borrar(String cedula) {
+		this.estudianteRespository.eliminar(cedula);
+		
+	}
+
+	@Override
+	public Estudiante buscarPorCD(String cedula) {
+		
+		return this.estudianteRespository.seleccionarPorCD(cedula);
+	}
+
+	@Override
+	public void actualizar(Estudiante estu) {
+		this.estudianteRespository.actualizar(estu);
+		
+	}
+
 }

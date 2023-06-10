@@ -22,11 +22,15 @@ public class Pa2U2P4NsJeApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		Estudiante estu = new Estudiante();
-		estu.setApellido("Soria");
-		estu.setCedula("123131");
-		estu.setNombre("Nelson");
-		
-		this.estudianteService.guardar(estu);
+		estu.setApellido("Espinosa");
+		estu.setCedula("0565253");
+		estu.setNombre("andres");
+	  	
+	    this.estudianteService.guardar(estu);
+	    this.estudianteService.borrar("0565253");
+		Estudiante estuq= this.estudianteService.buscarPorCD("123131");
+		estuq.setApellido("PAEZ");
+		this.estudianteService.actualizar(estuq);
 		
 	}
 
