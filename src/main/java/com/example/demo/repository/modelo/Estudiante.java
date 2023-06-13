@@ -4,22 +4,32 @@ import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Table(name ="estudiante") //,schema="" para cambiar el schema
-@Entity 
+@Entity
 public class Estudiante {
+	
+	
+	//Este atributo no debe ser seteado(SET)
+	@GeneratedValue(generator = "seq_estudiante",strategy = GenerationType.SEQUENCE)// con el strategy le decimos explicitamente que vamos a trabajar con una secuencia
+	@SequenceGenerator(name="seq_estudiante",sequenceName ="seq_estudiante",allocationSize = 1 ) //el AllocactionSize debe coincidir cone el incremento de mi BD
+	@Id
+	@Column(name= "estu_id")
+	private Integer id;  //mapeo especifico para secuencia
+	
+	@Column(name= "estu_cedula")
+	private String cedula;
 	
 	@Column(name= "estu_nombre") //mapear las columnas con los atributos
 	private String nombre;
 	
 	@Column(name= "estu_apellido")// le vas a vincular la columna estu-apellido con el atributo
 	private String apellido;
-	
-	@Id
-	@Column(name= "estu_cedula")
-	private String cedula;
 	
 	
 	public String getNombre() {
