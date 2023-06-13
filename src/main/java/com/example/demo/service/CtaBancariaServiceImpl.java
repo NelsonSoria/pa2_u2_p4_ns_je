@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.modelo.CtaBancaria;
@@ -15,10 +16,18 @@ public class CtaBancariaServiceImpl implements CtaBancariaService {
 	@Autowired
 	CtaBancariaRepository bancariaRepository;
 	
+	@Autowired
+	@Qualifier("par")
+	AbonoService abonoService;
+	
+	@Autowired
+	@Qualifier("impar")
+	AbonoService abonoService2;
+	
 	@Override
-	public CtaBancaria consutarPorid(Integer id) {
+	public CtaBancaria consultarPorId(Integer id) {
 		// TODO Auto-generated method stub
-		return this.bancariaRepository.seleccionarPorCD(id);
+		return this.bancariaRepository.seleccionarPorID(id);
 	}
 
 	@Override
@@ -37,12 +46,16 @@ public class CtaBancariaServiceImpl implements CtaBancariaService {
 		LocalDateTime fechaApertura= LocalDateTime.now();
 		miCta.setFechaApertura(fechaApertura);
 		int dia= fechaApertura.getDayOfMonth();
+		BigDecimal saldonuevo= new BigDecimal(0);
 		if(dia % 2 == 0) {
-			BigDecimal valor= saldo.multiply(new BigDecimal(0.05));
-			saldo= saldo.add(valor);	
+				saldonuevo=this.abonoService.calcular(saldo);
+			
+		}else {
+			saldonuevo=this.abonoService2.calcular(saldo);
+			
 		}
+		miCta.setSaldo(saldonuevo);
 
-		miCta.setSaldo(saldo);
 		miCta.setCedulaPropietario(cedula);
 		this.bancariaRepository.insertar(miCta);
 		

@@ -23,13 +23,13 @@ public class CtaBancariaRepositoryImpl implements CtaBancariaRepository{
 
 	@Override
 	public void eliminar(Integer id) {
-		CtaBancaria ctaEncontrado = this.seleccionarPorCD(id);
+		CtaBancaria ctaEncontrado = this.seleccionarPorID(id);
 		this.entityManager.remove(ctaEncontrado);
 		
 	}
 
 	@Override
-	public CtaBancaria seleccionarPorCD(Integer id) {
+	public CtaBancaria seleccionarPorID(Integer id) {
 		// TODO Auto-generated method stub
 		return this.entityManager.find(CtaBancaria.class, id);
 	}

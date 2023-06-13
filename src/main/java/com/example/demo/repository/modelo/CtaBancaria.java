@@ -68,5 +68,10 @@ public class CtaBancaria {
 	public void setCedulaPropietario(String cedulaPropietario) {
 		this.cedulaPropietario = cedulaPropietario;
 	}
+	@Override
+	public String toString() {
+		return "CtaBancaria [id=" + id + ", numero=" + numero + ", tipo=" + tipo + ", fechaApertura=" + fechaApertura
+				+ ", saldo=" + saldo + ", cedulaPropietario=" + cedulaPropietario + "]";
+	}
 	
 }

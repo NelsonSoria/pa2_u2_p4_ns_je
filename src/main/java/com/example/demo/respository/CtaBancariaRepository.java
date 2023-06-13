@@ -6,7 +6,7 @@ public interface CtaBancariaRepository {
 	
 	public void insertar(CtaBancaria cta);
 	public void eliminar(Integer id);
-	public CtaBancaria seleccionarPorCD(Integer id);
+	public CtaBancaria seleccionarPorID(Integer id);
 	public void actualizar(CtaBancaria cta);
 
 }
