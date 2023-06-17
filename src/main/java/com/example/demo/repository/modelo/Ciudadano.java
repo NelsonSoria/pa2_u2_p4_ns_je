@@ -2,6 +2,7 @@ package com.example.demo.repository.modelo;
 
 import org.springframework.context.annotation.Scope;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class Ciudadano {
 	@Column(name="ciud_cedula")
 	private String cedula;
 	
-	@OneToOne(mappedBy = "ciudadano")
+	@OneToOne(mappedBy = "ciudadano",cascade = CascadeType.ALL)
 	private Empleado empleado;
 	
 	//set get

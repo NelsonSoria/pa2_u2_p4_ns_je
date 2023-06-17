@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import org.hibernate.annotations.ForeignKey;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
+
 @Table(name="empleado")
 
 public class Empleado {
@@ -33,7 +35,7 @@ public class Empleado {
 	@Column(name="empl_cargo")
 	private String cargo;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)//sobre la entidad principal, voy a afectar en cascada al otro atributo
 	@JoinColumn(name = "empl_ciudadano_id")
 	private Ciudadano ciudadano;
 	
